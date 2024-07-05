@@ -10,7 +10,7 @@ class TweetRepository {
     }
   }
 
-  async get() {
+  async get(id) {
     try {
       const tweet = await Tweet.findById(id);
       return tweet;
@@ -19,33 +19,45 @@ class TweetRepository {
     }
   }
 
-  async update(tweetId,data) {
+  async update(tweetId, data) {
     try {
-        const tweet = await Tweet.findByIdAndRemove(id);
-        return tweet;
-      } catch (error) {
-        console.log(error);
-      }
-
+      const tweet = await Tweet.findByIdAndUpdate(tweetId, data, {
+        new: "true",
+      });
+      return tweet;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async destroy(id) {
     try {
-        const tweet = await Tweet.findByIdAndRemove(id);
-        return tweet;
-      } catch (error) {
-        console.log(error);
-      }
+      const tweet = await Tweet.findByIdAndRemove(id);
+      return tweet;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  async getWithComments(id){
+  async getWithComments(id) {
     try {
-        const tweet = await Tweet.findById(id).populate({path:'comments'});
-        return tweet;
-      } catch (error) {
-        console.log(error);
-      }
+      const tweet = await Tweet.findById(id)
+        .populate({ path: "comments" })
+        .lean();
+      return tweet;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getAll(offset, limit) {
+    try {
+      const tweet = await Tweet.find().skip(offset).limit(limit);
+      return tweet;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
-module.exports=TweetRepository;
+module.exports = TweetRepository;
