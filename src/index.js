@@ -1,14 +1,13 @@
-const express=require('express');
-const connect = require('./config/database')
-const app= express();
-const Tweet =require('./models/tweet')
+import express from 'express';
+import { connect } from './config/database.js';  // Ensure the file extension is included
+import service from './services/tweet-service.js'
 
-app.listen(3000,async()=>{
-    console.log(`Server Started `);
-    await connect();
-    console.log('Mongo DB Connected');
+const app = express();
 
-    // const tweetRepo= new TweetRepository();
-    // const tweet= await tweetRepo.create({content:'With hooks'})
-    // console.log(tweet);
-}) 
+app.listen(3000, async () => {
+  console.log('Server Started');
+  await connect();
+  console.log('Mongo db connected');
+  let ser = new service();
+  await ser.create({content:'Done with #refactor?'})
+});
