@@ -50,7 +50,7 @@ class TweetRepository extends CrudRepository {
 
   async find(id){
     try {
-      const tweet =  Tweet.findById(id).exec();
+      const tweet =  Tweet.findById(id).populate({path:'likes'});
     
       return tweet;
       
