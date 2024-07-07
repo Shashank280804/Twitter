@@ -11,8 +11,7 @@ class UserRepository extends CrudRepository {
       const response = await User.findOne(data);
       return response;
     } catch (error) {
-      console.error("Error in UserRepository.findBy:", error); // Log the error details
-      throw error;
+      console.error("Error in UserRepository.findBy:", error); 
     }
   }
 }
