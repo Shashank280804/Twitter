@@ -16,12 +16,12 @@ export const signup = async (req, res) => {
       err: {},
     });
   } catch (err) {
-    console.error("Error during signup:", err); // Log the error details
+    console.error("Error during signup:", err);
     return res.status(500).json({
       message: "Something went wrong",
       data: {},
       success: false,
-      err: err.message, // Include the error message in the response
+      err: err.message, 
     });
   }
 };
