@@ -21,7 +21,7 @@ export const signup = async (req, res) => {
       message: "Something went wrong",
       data: {},
       success: false,
-      err: err.message, 
+      err: err.message
     });
   }
 };
