@@ -36,12 +36,12 @@ export const login = async (req, res) => {
       err: {},
     });
   } catch (error) {
-    console.error("Error during login:", error); // Log the error details
+    console.error("Error during login:", error); 
     return res.status(500).json({
       message: "Something went wrong",
       data: {},
       success: false,
-      err: error.message, // Include the error message in the response
+      err: error.message,
     });
   }
 };
